@@ -6,6 +6,6 @@ package proyecto3;
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("Hola Fabiana");
+        System.out.println("Prueba eclipse");
     }
 }
