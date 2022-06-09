@@ -73,7 +73,7 @@ public class keyboard extends JPanel{
 
 		for (int i = 0; i<nombres.size();i++) {
 			if (Nombre.equals(nombres.get(i))) {
-				System.out.printf("%s Es una persona muy sexi\n", nombres.get(i));
+				System.out.printf("%s El nombre buscado es\n", nombres.get(i));
 				return 0;
 			}
 		}
