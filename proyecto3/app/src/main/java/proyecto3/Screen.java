@@ -1,14 +1,9 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Screen extends JPanel {
@@ -31,6 +26,7 @@ public class Screen extends JPanel {
 		JpanelConImagen myImagen = new JpanelConImagen(My, Ubicacion);
 		myImagen.setPreferredSize(new Dimension(200,200));
 		this.add(myImagen);
+		this.updateUI();
 
 	}
 
@@ -49,9 +45,7 @@ public class Screen extends JPanel {
 	}
 
 	public void redimencion(String texto, Screen myscreen) {
-
 		Ubicaciones.add(texto);
-		System.out.println(Ubicaciones.size());
 
 		if (Ubicaciones.size()==largolista) {
 			myscreen.setSize(myscreen.getScreenSize()+205);

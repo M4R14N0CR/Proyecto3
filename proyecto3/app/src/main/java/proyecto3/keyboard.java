@@ -18,9 +18,6 @@ public class keyboard extends JPanel{
 
 	public keyboard() {
 
-
-
-
 		this.setLayout(new FlowLayout());
 		this.setPreferredSize(new Dimension(800,70));
 		this.setMaximumSize(new Dimension(850,70));
@@ -62,16 +59,12 @@ public class keyboard extends JPanel{
 	}
 
 
-
-
-
-
-	public void actionButton(Screen myscreen) {
+  public void actionButton(Screen myscreen) {
 		this.myButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mywind= new addWindow(myscreen);
+				FileChooser fc = new FileChooser(myscreen);
 			}
 		});
 	}
