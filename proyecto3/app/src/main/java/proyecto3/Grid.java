@@ -8,7 +8,7 @@ import javax.swing.JScrollPane;
 
 public class Grid extends JPanel{
 	private Screen myscreen;
-	private Keyboard mykey;
+	private keyboard mykey;
 	private JScrollPane scroll;
 	
 	public Grid() {
@@ -18,10 +18,8 @@ public class Grid extends JPanel{
 
 		
 		this.myscreen = new Screen();
-		this.mykey = new Keyboard();
-		
-		this.mykey.actionButton(this.myscreen, "C:/Users/fabia/Downloads/foto.jpg");
-		
+		this.mykey = new keyboard();
+		this.mykey.actionButton(this.myscreen);
 		this.scroll.add(myscreen);
 		
 		this.scroll.setViewportView(myscreen);
@@ -29,6 +27,5 @@ public class Grid extends JPanel{
 		this.add(this.mykey);
 		this.add(this.scroll);
 		
-	
 	}	
 }
