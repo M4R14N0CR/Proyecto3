@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Screen extends JPanel {
@@ -33,6 +34,7 @@ public class Screen extends JPanel {
 		JpanelConImagen myImagen = new JpanelConImagen(My, Ubicacion);
 		myImagen.setPreferredSize(new Dimension(200,200));
 		this.add(myImagen);
+		
 		
 	}
 	

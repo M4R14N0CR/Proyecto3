@@ -70,7 +70,8 @@ public class keyboard extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mywind= new addWindow(myscreen);
+				//mywind= new addWindow(myscreen);
+				FileChooser fc = new FileChooser(myscreen);
 			}
 		});
 	}
