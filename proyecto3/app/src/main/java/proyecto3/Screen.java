@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
-
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 public class Screen extends JPanel {
 
 	private int ScreenSize = 620;
+	private ArrayList<String> Ubicaciones = new ArrayList<>();
+	private int largolista=12;
 
 	public Screen() {
 		this.setLayout(new FlowLayout());
@@ -26,7 +28,7 @@ public class Screen extends JPanel {
 
 	public void addImagen(String Ubicacion) {
 		Image My = new ImageIcon(Ubicacion).getImage();
-		JpanelConImagen myImagen = new JpanelConImagen(My);
+		JpanelConImagen myImagen = new JpanelConImagen(My, Ubicacion);
 		myImagen.setPreferredSize(new Dimension(200,200));
 		this.add(myImagen);
 
@@ -44,6 +46,19 @@ public class Screen extends JPanel {
 
 	public int getScreenSize() {
 		return ScreenSize;
+	}
+
+	public void redimencion(String texto, Screen myscreen) {
+
+		Ubicaciones.add(texto);
+		System.out.println(Ubicaciones.size());
+
+		if (Ubicaciones.size()==largolista) {
+			myscreen.setSize(myscreen.getScreenSize()+205);
+			myscreen.setScreenSize(myscreen.getScreenSize()+205);
+			largolista+=4;
+		}
+
 	}
 
 }
