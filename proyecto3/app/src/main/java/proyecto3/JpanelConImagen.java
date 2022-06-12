@@ -3,6 +3,11 @@ package proyecto3;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
  
@@ -19,6 +24,22 @@ public class JpanelConImagen extends JPanel {
         if (imagenInicial != null) {
             imagen = imagenInicial;
         }
+        
+        this.addMouseListener((MouseListener) new MouseAdapter() {
+            public void mousePressed(MouseEvent me) {
+            	JFrame appFrame = new JFrame("Image");
+
+	      		appFrame.setMaximumSize(new Dimension(500,500));
+	      		appFrame.setPreferredSize(new Dimension(500,500));
+	      		appFrame.setResizable(true);
+	      		appFrame.pack();
+	      		appFrame.setVisible(true);
+
+	      		Screen newScreen = new Screen();
+	      		newScreen.addImagen(Ubicacion);
+	      		appFrame.add(newScreen);
+            }
+          });
     }
  
     @Override

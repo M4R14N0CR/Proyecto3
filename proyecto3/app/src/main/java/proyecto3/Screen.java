@@ -34,7 +34,8 @@ public class Screen extends JPanel {
 		JpanelConImagen myImagen = new JpanelConImagen(My, Ubicacion);
 		myImagen.setPreferredSize(new Dimension(200,200));
 		this.add(myImagen);
-		
+		this.updateUI();
+		JOptionPane.showMessageDialog(null, "La imagen ha sido agregada exitosamente");
 		
 	}
 	

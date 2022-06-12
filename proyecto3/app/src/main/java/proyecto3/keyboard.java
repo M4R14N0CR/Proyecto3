@@ -3,6 +3,7 @@ package proyecto3;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -17,7 +18,6 @@ public class keyboard extends JPanel{
 	private JButton myButton = new JButton("Nueva Foto");
 	private JButton myButtonC = new JButton("X");
 	private JTextField textfield1 = new JTextField();
-	private addWindow mywind;
 	
 	public keyboard() {
 
@@ -31,6 +31,8 @@ public class keyboard extends JPanel{
 		this.myButton.setPreferredSize(new Dimension(200,50));
 		this.myButton.setMaximumSize(new Dimension(200,50));
 		this.myButton.setBackground(Color.BLUE);
+		this.myButton.setFont(new Font("Roman", Font.BOLD, 18));
+		this.myButton.setForeground(Color.white);
 		
 		this.myButtonC.setPreferredSize(new Dimension(40,55));
 		this.myButtonC.setMaximumSize(new Dimension(40,55));
@@ -70,7 +72,6 @@ public class keyboard extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//mywind= new addWindow(myscreen);
 				FileChooser fc = new FileChooser(myscreen);
 			}
 		});
