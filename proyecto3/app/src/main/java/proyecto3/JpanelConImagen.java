@@ -1,6 +1,7 @@
 package proyecto3;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JPanel;
@@ -9,12 +10,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
  
 public class JpanelConImagen extends JPanel {
- 
+	 
     private Image imagen;
     private Features feature;
     public String Ubicacion;
@@ -39,12 +41,19 @@ public class JpanelConImagen extends JPanel {
         this.addMouseListener((MouseListener) new MouseAdapter() { 
             public void mousePressed(MouseEvent me) { 
             	JFrame appFrame = new JFrame("Image");
-	      		appFrame.setSize(new Dimension(870,750));
-	      		appFrame.setPreferredSize(new Dimension(500,500));
-	      		appFrame.setResizable(true);
+	      		appFrame.setSize(new Dimension(600,250));
+	      		appFrame.setPreferredSize(new Dimension(600,250));
+	      		appFrame.setResizable(false);
 	      		appFrame.pack();	
 	      		appFrame.setVisible(true);
+	      		appFrame.setLayout(new FlowLayout());
+	      		appFrame.setBackground(Color.WHITE);
 	      		Screen newScreen = new Screen();
+	      		newScreen.setPreferredSize(new Dimension(200,200));
+	      		JPanel info = new JPanel();
+	      		info.setPreferredSize(new Dimension(350,200));
+	      		info.setLayout(new FlowLayout());
+	      	
 	      		try {
 					newScreen.addImagen(Ubicacion);
 				} catch (Exception e) {
@@ -52,14 +61,18 @@ public class JpanelConImagen extends JPanel {
 					e.printStackTrace();
 				}
 	      		
+	      		JLabel path = new JLabel(Ubicacion);
+	      		info.add(path);
+	      		
 	      		for (int i=0;i<5;i++) {
 	      			JLabel text = new JLabel(caracteristicas.get(i));
 	      			text.setPreferredSize(new Dimension(100,50));
 	      			text.setMaximumSize(new Dimension(100,50));
 	      			text.setBackground(Color.LIGHT_GRAY);
-	      			newScreen.add(text);
+	      			info.add(text);
 	      		}
 	      		appFrame.add(newScreen);
+	      		appFrame.add(info);
             } 
           });
     }
@@ -82,3 +95,4 @@ public class JpanelConImagen extends JPanel {
     	return false;
     }
 }
+
