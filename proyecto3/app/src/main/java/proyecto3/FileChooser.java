@@ -21,7 +21,7 @@ public class FileChooser extends JFrame {
 			e1.printStackTrace();
 		}
 		
-		myscreen.redimencion(selectPath, myscreen);
+		myscreen.redimencion(myscreen);
 		JOptionPane.showMessageDialog(null, "La imagen ha sido agregada exitosamente");
 	}
 	

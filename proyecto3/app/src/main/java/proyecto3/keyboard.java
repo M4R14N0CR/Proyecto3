@@ -22,6 +22,7 @@ public class keyboard extends JPanel{
 	  
 	  public keyboard(Grid grid) {
 	    this.OriginalScreen=grid.getScreen();
+	   
 
 	    
 	    this.setLayout(new FlowLayout());
@@ -59,9 +60,11 @@ public class keyboard extends JPanel{
 	      public void actionPerformed(ActionEvent e) {
 	        OriginalScreen.searchSystem(((JTextField)e.getSource()).getText());
 	        newScreen = new Screen();
+	        newScreen.setLabel("No hay fotografias");
 	        for (int i=0; i<OriginalScreen.searchResults.size();i++){
 	          try {
 				newScreen.addImagen(OriginalScreen.searchResults.get(i).Ubicacion);
+				newScreen.redimencion(newScreen);
 			} catch (Exception e1) {
 				
 				e1.printStackTrace();

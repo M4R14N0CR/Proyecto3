@@ -5,12 +5,16 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JPanel;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -21,9 +25,11 @@ public class JpanelConImagen extends JPanel {
     private Features feature;
     public String Ubicacion;
     private  ArrayList<String> caracteristicas = new ArrayList<>();
+    private Screen appScreen;
  
-    public JpanelConImagen(Image imagenInicial, String Ubicacion) throws Exception {
+    public JpanelConImagen(Image imagenInicial, String Ubicacion, Screen pAppScreen) throws Exception {
     	this.Ubicacion = Ubicacion;
+    	this.appScreen = pAppScreen;
     	feature = new Features();
     	feature.setFeatures(Ubicacion);
     	
@@ -53,6 +59,22 @@ public class JpanelConImagen extends JPanel {
 	      		JPanel info = new JPanel();
 	      		info.setPreferredSize(new Dimension(350,200));
 	      		info.setLayout(new FlowLayout());
+	      		JButton deleteButton = new JButton("Eliminar foto");
+	      		deleteButton.setBackground(Color.red);
+	      		deleteButton.setForeground(Color.white);
+	      		deleteButton.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						appScreen.deleteImage(Ubicacion);
+						setVisible();
+						appFrame.setVisible(false);
+						appFrame.dispose();
+						if(appScreen.images.size() == 0) {
+							appScreen.setLabel("Ingrese una fotografia");
+						}
+					}
+				});
 	      	
 	      		try {
 					newScreen.addImagen(Ubicacion);
@@ -71,6 +93,7 @@ public class JpanelConImagen extends JPanel {
 	      			text.setBackground(Color.LIGHT_GRAY);
 	      			info.add(text);
 	      		}
+	      		info.add(deleteButton);
 	      		appFrame.add(newScreen);
 	      		appFrame.add(info);
             } 
@@ -93,6 +116,11 @@ public class JpanelConImagen extends JPanel {
     	
     	}
     	return false;
+    }
+    
+    public void setVisible() {
+    	
+    	this.setVisible(false);
     }
 }
 
