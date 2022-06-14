@@ -55,7 +55,7 @@ public class JpanelWithImage extends JPanel {
     				info.setLayout(new FlowLayout());
     				info.setBackground(Color.white);
    
-    				Button deleteButton = new Button(35,100,"Eliminar foto",Color.red);
+    				Button deleteButton = new Button(40,100,"Eliminar foto",Color.red);
     				deleteButton.setForeground(Color.white);
     				deleteButton.addActionListener(new ActionListener() {
           
@@ -94,9 +94,11 @@ public class JpanelWithImage extends JPanel {
     				info.add(SubTitle2);
             
     				for (int i=0;i<5;i++) {
-    					JLabel text = new JLabel(caracteristicas.get(i));
+    					JLabel text = new JLabel("        "+caracteristicas.get(i));
+    					text.setOpaque(true);
     					text.setPreferredSize(new Dimension(100,50));
     					text.setMaximumSize(new Dimension(100,50));
+    					text.setBackground(Color.LIGHT_GRAY);
     					info.add(text);
     				}
     				info.add(deleteButton);
