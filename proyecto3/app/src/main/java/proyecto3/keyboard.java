@@ -31,6 +31,12 @@ public class keyboard extends JPanel{
         
     		@Override
     		public void actionPerformed(ActionEvent e) {
+    			if(OriginalScreen.images.size()==0) {
+    				OriginalScreen.setLabel("No hay fotografías aún, agrega una presionando el botón 'Nueva foto'");
+    			}else {
+    				OriginalScreen.setLabelVisual();
+    			}
+    			
     			for (int i=0; i<OriginalScreen.images.size();i++){
     				OriginalScreen.images.get(i).setVisible(true);
     			}
@@ -44,18 +50,12 @@ public class keyboard extends JPanel{
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			OriginalScreen.searchSystem(((JTextField)e.getSource()).getText());
-    			
-    			JLabel Label= new JLabel();
-    			Label.setText("<html><p style=\"width:320px\">"+"No hay fotografías que coincidan con la búsqueda. Por favor intenta de nuevo con otra información"+"</p></html>");
-    	    	Label.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
-    	    	Label.setPreferredSize(new Dimension(380,550));
     	    	
     			if (OriginalScreen.searchResults.size()==0) {
-    				OriginalScreen.setLabel("");
-    				OriginalScreen.add(Label);
+    				OriginalScreen.setLabel("No hay fotografías que coincidan con la búsqueda. Por favor intenta de nuevo con otra información");
     			}
     			else {
-    				Label.setVisible(false);
+    				OriginalScreen.setLabelVisual();
     			}
     			for (int i=0; i<OriginalScreen.images.size();i++){
     				if(OriginalScreen.searchResults.contains(OriginalScreen.images.get(i))) {

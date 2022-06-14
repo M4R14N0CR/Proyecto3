@@ -71,6 +71,10 @@ public class Screen extends JPanel {
     	this.appLabel.setVisible(true);
     	this.add(appLabel);
     }
+    
+    public void setLabelVisual() {  
+    	this.appLabel.setVisible(false);
+    }
 
     public void deleteImage(String pDirection) {
     	for(int i = 0; i<images.size();i++) {
