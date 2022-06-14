@@ -19,9 +19,7 @@ import java.util.List;
 public class Features {
   
 	private ArrayList<String> features = new ArrayList<>();
-  
-  
-  
+
 	public void  setFeatures(String pImgageDirection) throws Exception{
     
     

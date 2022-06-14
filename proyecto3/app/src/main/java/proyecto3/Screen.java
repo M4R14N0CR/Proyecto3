@@ -13,8 +13,8 @@ public class Screen extends JPanel {
     
     private int ScreenSize = 620;
     private int largolista=12;
-    public  ArrayList<JpanelConImagen> images = new ArrayList<>();
-    public  ArrayList<JpanelConImagen> searchResults = new ArrayList<>();
+    public  ArrayList<JpanelWithImage> images = new ArrayList<>();
+    public  ArrayList<JpanelWithImage> searchResults = new ArrayList<>();
     private JLabel appLabel = new JLabel();
 
     public Screen() {
@@ -25,19 +25,9 @@ public class Screen extends JPanel {
     	this.setLabel("No hay fotografías aún, agrega una presionando el botón 'Nueva foto'");
     }
     
-    public void addImagen(String Ubicacion)throws Exception{
-    	Image myImage = new ImageIcon(Ubicacion).getImage();
-    	JpanelConImagen myImagen = new JpanelConImagen(myImage, Ubicacion,this);
-    	myImagen.setPreferredSize(new Dimension(200,200));
-    	this.images.add(myImagen);
-    	this.appLabel.setVisible(false);
-    	this.add(myImagen);
-    	this.updateUI();
-    }
-    
     public void addImagen(String Ubicacion,int Dimensions)throws Exception{
     	Image myImage = new ImageIcon(Ubicacion).getImage();
-    	JpanelConImagen myImagen = new JpanelConImagen(myImage, Ubicacion,this);
+    	JpanelWithImage myImagen = new JpanelWithImage(myImage, Ubicacion,this);
     	myImagen.setPreferredSize(new Dimension(Dimensions,Dimensions));
     	this.images.add(myImagen);
     	this.appLabel.setVisible(false);

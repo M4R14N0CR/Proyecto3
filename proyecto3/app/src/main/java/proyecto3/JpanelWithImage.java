@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
  
-public class JpanelConImagen extends JPanel {
+public class JpanelWithImage extends JPanel {
    
     private Image imagen;
     private Features feature;
@@ -24,7 +24,7 @@ public class JpanelConImagen extends JPanel {
     private  ArrayList<String> caracteristicas = new ArrayList<>();
     private Screen appScreen;
  
-    public JpanelConImagen(Image imagenInicial, String Ubicacion, Screen pAppScreen) throws Exception {
+    public JpanelWithImage(Image imagenInicial, String Ubicacion, Screen pAppScreen) throws Exception {
     	this.Ubicacion = Ubicacion;
     	this.appScreen = pAppScreen;
     	feature = new Features();
@@ -44,14 +44,17 @@ public class JpanelConImagen extends JPanel {
     		this.addMouseListener((MouseListener) new MouseAdapter() { 
     			public void mousePressed(MouseEvent me) { 
     				Frame appFrame = new Frame("Image");
+    				appFrame.setResizable(true);
     				
     				Screen newScreen = new Screen();
     				newScreen.setPreferredSize(new Dimension(250,250));
+    				newScreen.setMaximumSize(new Dimension(250,250));
     				
     				JPanel info = new JPanel();
-    				info.setPreferredSize(new Dimension(420,280));
+    				info.setPreferredSize(new Dimension(420,300));
     				info.setLayout(new FlowLayout());
     				info.setBackground(Color.white);
+   
     				
     				Button deleteButton = new Button(35,100,"Eliminar foto",Color.red);
     				deleteButton.setForeground(Color.white);
@@ -75,21 +78,22 @@ public class JpanelConImagen extends JPanel {
     					
     					e.printStackTrace();
     				}
+
             
-    				JLabel path = new JLabel(Ubicacion);
-    				path.setPreferredSize(new Dimension(410,90));
+    				JLabel path = new JLabel("Ruta: "+Ubicacion);
+    				path.setPreferredSize(new Dimension(400,90));
     				info.add(path);
             
     				for (int i=0;i<5;i++) {
     					JLabel text = new JLabel(caracteristicas.get(i));
     					text.setPreferredSize(new Dimension(100,50));
     					text.setMaximumSize(new Dimension(100,50));
-    					text.setBackground(Color.LIGHT_GRAY);
     					info.add(text);
     				}
     				info.add(deleteButton);
     				appFrame.addElement(newScreen);
     				appFrame.addElement(info);
+    				appFrame.addElement();
     			} 
     		});
     	}

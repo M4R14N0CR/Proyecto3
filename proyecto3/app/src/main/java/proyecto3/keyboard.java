@@ -45,7 +45,7 @@ public class keyboard extends JPanel{
     			newScreen.setLabel("No hay fotografías que coincidan con la búsqueda. Por favor intenta de nuevo con otra información");
     			for (int i=0; i<OriginalScreen.searchResults.size();i++){
     				try {
-    					newScreen.addImagen(OriginalScreen.searchResults.get(i).Ubicacion);
+    					newScreen.addImagen(OriginalScreen.searchResults.get(i).Ubicacion,200);
     					newScreen.redimencion();
     				} catch (Exception e1) {
     					

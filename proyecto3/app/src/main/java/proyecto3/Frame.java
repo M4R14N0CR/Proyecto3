@@ -12,17 +12,16 @@ public class Frame extends JFrame {
 	
 	public Frame(String Title) {
 		this.setTitle(Title);
-		this.setSize(new Dimension(700,360));
-		this.setPreferredSize(new Dimension(700,360));
+		this.setSize(new Dimension(800,390));
+		this.setPreferredSize(new Dimension(800,390));
 		this.setResizable(false);
 		this.pack();  
 		this.setVisible(true);
 		this.setLayout(new FlowLayout());
 		
-		this.PrincipalPanel.setPreferredSize(new Dimension(700,370));
-		this.PrincipalPanel.setBackground(Color.white);;
-		
-		this.add(PrincipalPanel);
+		this.PrincipalPanel.setBackground(Color.white);
+		this.PrincipalPanel.setLayout(new FlowLayout());
+		this.PrincipalPanel.setPreferredSize(new Dimension(800,390));
 	}
 	
 	public void addElement(Screen newScreen) {
@@ -31,6 +30,10 @@ public class Frame extends JFrame {
 	
 	public void addElement(JPanel info) {
 		PrincipalPanel.add(info);
+	}
+	
+	public void addElement() {
+		this.add(PrincipalPanel);
 	}
 
 }
