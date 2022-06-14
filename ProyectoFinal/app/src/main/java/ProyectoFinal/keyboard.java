@@ -10,15 +10,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class keyboard extends JPanel{
+	
+	private static keyboard myKeyboard = null;
 
 	private Button addButton = new Button(50,200,"Nueva foto",Color.BLUE);
     private Button CleanButton = new Button(55, 40, "X", Color.WHITE);
     private TextField textfield = new TextField();
     private Screen OriginalScreen;
-    private Screen newScreen = new Screen();
+    private Screen newScreen;
     
-    
-    public keyboard(Grid grid) {
+    private keyboard(Grid grid) {
     	this.addButton.setForeground(Color.white);
     	
     	this.setBackground(Color.white);
@@ -32,10 +33,16 @@ public class keyboard extends JPanel{
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	       
-	          grid.setScreen(OriginalScreen);
-	          grid.setScroll();
-	          textfield.setText("");
-	          
+	        	if(OriginalScreen.images.size()==0) {
+    				OriginalScreen.setLabel("No hay fotografías aún, agrega una presionando el botón 'Nueva foto'");
+    			}else {
+    				OriginalScreen.setLabelVisual();
+    			}
+    			
+    			for (int i=0; i<OriginalScreen.images.size();i++){
+    				OriginalScreen.images.get(i).setVisible(true);
+    			}
+    			textfield.setText("");
 	        }
 	      });
 	      
@@ -44,21 +51,23 @@ public class keyboard extends JPanel{
         
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	          OriginalScreen.searchSystem(((JTextField)e.getSource()).getText());
-
-	          newScreen.setLabel("No hay fotografías que coincidan con la búsqueda. Por favor intenta de nuevo con otra información");
-	          for (int i=0; i<OriginalScreen.searchResults.size();i++){
-	            try {
-	            	newScreen.addImagen(OriginalScreen.searchResults.get(i).Ubicacion,200);
-	            	newScreen.redimencion();
-	            } catch (Exception e1) {
-	            	e1.printStackTrace();
-	            }
-	          }
-	          grid.setScreen(newScreen);
-	          grid.setScroll();
-	          grid.updateUI();
-	          OriginalScreen.searchResults.clear();
+	        	OriginalScreen.searchSystem(((JTextField)e.getSource()).getText());
+    	    	
+    			if (OriginalScreen.searchResults.size()==0) {
+    				OriginalScreen.setLabel("No hay fotografías que coincidan con la búsqueda. Por favor intenta de nuevo con otra información");
+    			}
+    			else {
+    				OriginalScreen.setLabelVisual();
+    			}
+    			for (int i=0; i<OriginalScreen.images.size();i++){
+    				if(OriginalScreen.searchResults.contains(OriginalScreen.images.get(i))) {
+    				}
+    				else {
+    					OriginalScreen.images.get(i).setVisible(false);
+    				}
+    			}
+    			grid.updateUI();
+    			OriginalScreen.searchResults.clear();
 	        }
 	      });
 
@@ -77,6 +86,14 @@ public class keyboard extends JPanel{
           FileChooser fc = new FileChooser(myscreen);
         }
       });
+    }
+    
+    public static keyboard getKeyboard(Grid grid) {
+    	if(myKeyboard==null) {
+    		myKeyboard = new keyboard(grid);
+    	}
+    	
+    	return myKeyboard;
     }
     
     

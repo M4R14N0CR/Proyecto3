@@ -8,7 +8,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class FileChooser extends JFrame {
   
   private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "png");
-  String selectPath = "";
+  private String selectPath = "";
   
   public FileChooser(Screen myscreen) {
     JFileChooser dlg = new JFileChooser();
