@@ -1,4 +1,4 @@
-package proyecto3;
+package views;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JPanel;
+import Engine.Features;
+import Engine.FindWord;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -21,9 +23,10 @@ public class JpanelWithImage extends JPanel {
    
     private Image imagen;
     private Features feature;
-    public String Ubicacion;
+    private String Ubicacion;
     private  ArrayList<String> caracteristicas = new ArrayList<>();
     private Screen appScreen;
+    private FindWord findWord = new FindWord();
  
     public JpanelWithImage(Image imagenInicial, String Ubicacion, Screen pAppScreen) throws Exception {
     	this.Ubicacion = Ubicacion;
@@ -41,12 +44,13 @@ public class JpanelWithImage extends JPanel {
     		if (imagenInicial != null) {
     			imagen = imagenInicial;
     		}
-        
+    		
     		this.addMouseListener((MouseListener) new MouseAdapter() { 
     			public void mousePressed(MouseEvent me) { 
     				Frame appFrame = new Frame("Image");
+    				appFrame.setResizable(true);
     				
-    				Screen newScreen = new Screen();
+    				Screen newScreen = new Screen(appScreen.getController());
     				newScreen.setPreferredSize(new Dimension(250,250));
     				newScreen.setMaximumSize(new Dimension(250,250));
     				
@@ -55,8 +59,11 @@ public class JpanelWithImage extends JPanel {
     				info.setLayout(new FlowLayout());
     				info.setBackground(Color.white);
    
-    				Button deleteButton = new Button(40,100,"Eliminar foto",Color.red);
+    				
+    				Button deleteButton = new Button(35,100,"Eliminar foto",Color.red);
     				deleteButton.setForeground(Color.white);
+    				
+    				
     				deleteButton.addActionListener(new ActionListener() {
           
     					@Override
@@ -65,9 +72,11 @@ public class JpanelWithImage extends JPanel {
     						setVisible(false);
     						appFrame.setVisible(false);
     						appFrame.dispose();
-    						if(appScreen.images.size() == 0) {
+    						if(appScreen.getController().getImages().size() == 0) {
     							appScreen.setLabel("No hay fotografías aún, agrega una presionando el botón 'Nueva foto'");
     						}
+    						appScreen.deleteImage(Ubicacion);
+    						appScreen.updateUI();
     					}
     				});
           
@@ -78,20 +87,19 @@ public class JpanelWithImage extends JPanel {
     					e.printStackTrace();
     				}
 
-            
-    				JLabel SubTitle1 = new JLabel("Ruta:");
-    				SubTitle1.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
-    				SubTitle1.setPreferredSize(new Dimension(400,60));
-    				info.add(SubTitle1);
+    				//JLabel SubTitle1 = new JLabel("Ruta:");
+    				//SubTitle1.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
+    				//SubTitle1.setPreferredSize(new Dimension(400,60));
+    				//info.add(SubTitle1);
     				
-    				JLabel path = new JLabel(Ubicacion);
-    				path.setPreferredSize(new Dimension(400,20));
+    				JLabel path = new JLabel("Ruta: "+Ubicacion);
+    				path.setPreferredSize(new Dimension(400,90));
     				info.add(path);
     				
-    				JLabel SubTitle2 = new JLabel("Etiquetas:");
-    				SubTitle2.setPreferredSize(new Dimension(400,75));
-    				SubTitle2.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
-    				info.add(SubTitle2);
+    				//JLabel SubTitle2 = new JLabel("Etiquetas:");
+    				//SubTitle2.setPreferredSize(new Dimension(400,75));
+    				//SubTitle2.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
+    				//info.add(SubTitle2);
             
     				for (int i=0;i<5;i++) {
     					JLabel text = new JLabel("        "+caracteristicas.get(i));
@@ -118,14 +126,24 @@ public class JpanelWithImage extends JPanel {
     
     public boolean serchInImage(String pSearch) {
    		for(int i = 0; i<caracteristicas.size();i++) {
-   			if(pSearch.equals(caracteristicas.get(i))) {
+   			if(this.findWord.findWord(caracteristicas.get(i), pSearch)) {
    				return true;
    			}
     	}
     	return false;
    	}
     
-    public void setVisible(Boolean b) {
-   		this.setVisible(b);
+    public void setVisible() {
+   		this.setVisible(false);
+    }
+    
+    public ArrayList<String> getFeatures() {
+    	
+    	return this.caracteristicas;
+    }
+    
+    public String getPath() {
+    	
+    	return this.Ubicacion;
     }
 }

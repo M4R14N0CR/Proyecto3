@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'application'
 
 
-mainClassName = 'App'
+mainClassName = 'Principal'
 
 repositories{
 	mavenCentral()

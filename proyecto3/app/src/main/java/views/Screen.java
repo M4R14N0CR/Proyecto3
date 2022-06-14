@@ -1,4 +1,4 @@
-package proyecto3;
+package views;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -9,15 +9,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controllers.AppGaleryController;
+
 public class Screen extends JPanel {
     
-    private int ScreenSize = 620;
+	private int ScreenSize = 620;
     private int largolista=12;
-    public  ArrayList<JpanelWithImage> images = new ArrayList<>();
-    public  ArrayList<JpanelWithImage> searchResults = new ArrayList<>();
     private JLabel appLabel = new JLabel();
+    private AppGaleryController appController;
 
-    public Screen() {
+    public Screen(AppGaleryController appController) {
+    	this.appController = appController;
     	this.setLayout(new FlowLayout());    
     	this.setPreferredSize(new Dimension(835,ScreenSize));
     	this.setMaximumSize(new Dimension(835,ScreenSize));
@@ -25,11 +27,13 @@ public class Screen extends JPanel {
     	this.setLabel("No hay fotografías aún, agrega una presionando el botón 'Nueva foto'");
     }
     
+  
+    
     public void addImagen(String Ubicacion,int Dimensions)throws Exception{
     	Image myImage = new ImageIcon(Ubicacion).getImage();
     	JpanelWithImage myImagen = new JpanelWithImage(myImage, Ubicacion,this);
     	myImagen.setPreferredSize(new Dimension(Dimensions,Dimensions));
-    	this.images.add(myImagen);
+    	this.appController.addImage(myImagen);
     	this.appLabel.setVisible(false);
     	this.add(myImagen);
     	this.updateUI();
@@ -49,7 +53,7 @@ public class Screen extends JPanel {
     }
     
     public void redimencion() {
-    	if (images.size()==largolista) {
+    	if (this.appController.getImages().size()==largolista) {
     		this.setSize(this.getScreenSize()+205);
     		this.setScreenSize(this.getScreenSize()+205);
     		largolista+=4;
@@ -57,9 +61,9 @@ public class Screen extends JPanel {
     }
     
     public void searchSystem(String pSerch) {
-    	for(int i = 0; i<images.size();i++) {
-    		if(images.get(i).serchInImage(pSerch)) {
-    			searchResults.add(images.get(i));
+    	for(int i = 0; i<this.appController.getImages().size();i++) {
+    		if(this.appController.getImages().get(i).serchInImage(pSerch)) {
+    			this.appController.getResults().add(this.appController.getImages().get(i));
     		}
     	}
     }
@@ -77,11 +81,16 @@ public class Screen extends JPanel {
     }
 
     public void deleteImage(String pDirection) {
-    	for(int i = 0; i<images.size();i++) {
-    		if(pDirection.equals(images.get(i).Ubicacion)) {
-    			images.remove(i);
+    	for(int i = 0; i<this.appController.getImages().size();i++) {
+    		if(pDirection.equals(this.appController.getImages().get(i).getPath())) {
+    			this.appController.getImages().remove(i);
     		}
-    	}  
+		}
+    }  
+    
+    public AppGaleryController getController() {
+    	
+    	return this.appController;
     }
     
     
