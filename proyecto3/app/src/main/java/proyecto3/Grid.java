@@ -11,8 +11,7 @@ public class Grid extends JPanel{
     public Grid() {
     	myscreen= new Screen();
     	this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-    
-    	this.mykey = new keyboard(this);
+    	mykey = keyboard.getKeyboard(this);
     	this.mykey.actionButton(this.myscreen); 
     	this.scroll = new JScrollPane();
     	this.add(this.mykey);

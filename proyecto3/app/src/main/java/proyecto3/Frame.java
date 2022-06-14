@@ -20,7 +20,6 @@ public class Frame extends JFrame {
 		this.setLayout(new FlowLayout());
 		
 		this.PrincipalPanel.setBackground(Color.white);
-		this.PrincipalPanel.setLayout(new FlowLayout());
 		this.PrincipalPanel.setPreferredSize(new Dimension(800,390));
 	}
 	

@@ -2,6 +2,7 @@ package proyecto3;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JPanel;
@@ -44,7 +45,6 @@ public class JpanelWithImage extends JPanel {
     		this.addMouseListener((MouseListener) new MouseAdapter() { 
     			public void mousePressed(MouseEvent me) { 
     				Frame appFrame = new Frame("Image");
-    				appFrame.setResizable(true);
     				
     				Screen newScreen = new Screen();
     				newScreen.setPreferredSize(new Dimension(250,250));
@@ -55,7 +55,6 @@ public class JpanelWithImage extends JPanel {
     				info.setLayout(new FlowLayout());
     				info.setBackground(Color.white);
    
-    				
     				Button deleteButton = new Button(35,100,"Eliminar foto",Color.red);
     				deleteButton.setForeground(Color.white);
     				deleteButton.addActionListener(new ActionListener() {
@@ -80,9 +79,19 @@ public class JpanelWithImage extends JPanel {
     				}
 
             
-    				JLabel path = new JLabel("Ruta: "+Ubicacion);
-    				path.setPreferredSize(new Dimension(400,90));
+    				JLabel SubTitle1 = new JLabel("Ruta:");
+    				SubTitle1.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
+    				SubTitle1.setPreferredSize(new Dimension(400,60));
+    				info.add(SubTitle1);
+    				
+    				JLabel path = new JLabel(Ubicacion);
+    				path.setPreferredSize(new Dimension(400,20));
     				info.add(path);
+    				
+    				JLabel SubTitle2 = new JLabel("Etiquetas:");
+    				SubTitle2.setPreferredSize(new Dimension(400,75));
+    				SubTitle2.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
+    				info.add(SubTitle2);
             
     				for (int i=0;i<5;i++) {
     					JLabel text = new JLabel(caracteristicas.get(i));

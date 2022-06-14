@@ -10,15 +10,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class keyboard extends JPanel{
+	
+	private static keyboard myKeyboard = null;
 
     private Button addButton = new Button(50,200,"Nueva foto",Color.BLUE);
     private Button CleanButton = new Button(55, 40, "X", Color.WHITE);
     private TextField textfield = new TextField();
     private Screen OriginalScreen;
-    private Screen newScreen= new Screen();;
+    private Screen newScreen;
     
     
-    public keyboard(Grid grid) {
+    private keyboard(Grid grid) {
     	this.setBackground(Color.white);
     	this.setLayout(new FlowLayout());
     	
@@ -41,7 +43,8 @@ public class keyboard extends JPanel{
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			OriginalScreen.searchSystem(((JTextField)e.getSource()).getText());
-
+    			
+    			newScreen= new Screen();
     			newScreen.setLabel("No hay fotografías que coincidan con la búsqueda. Por favor intenta de nuevo con otra información");
     			for (int i=0; i<OriginalScreen.searchResults.size();i++){
     				try {
@@ -73,6 +76,15 @@ public class keyboard extends JPanel{
     			FileChooser fc = new FileChooser(myscreen);
     		}
     	});
+    }
+    
+    
+    public static keyboard getKeyboard(Grid grid) {
+    	if(myKeyboard==null) {
+    		myKeyboard = new keyboard(grid);
+    	}
+    	
+    	return myKeyboard;
     }
     
 }
