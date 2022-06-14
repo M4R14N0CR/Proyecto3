@@ -62,7 +62,7 @@ public class JpanelWithImage extends JPanel {
     					@Override
     					public void actionPerformed(ActionEvent e) {
     						appScreen.deleteImage(Ubicacion);
-    						setVisible();
+    						setVisible(false);
     						appFrame.setVisible(false);
     						appFrame.dispose();
     						if(appScreen.images.size() == 0) {
@@ -125,7 +125,7 @@ public class JpanelWithImage extends JPanel {
     	return false;
    	}
     
-    public void setVisible() {
-   		this.setVisible(false);
+    public void setVisible(Boolean b) {
+   		this.setVisible(b);
     }
 }
