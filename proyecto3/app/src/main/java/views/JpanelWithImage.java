@@ -2,11 +2,13 @@ package views;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JPanel;
 
 import Engine.Features;
+import Engine.FindWord;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,9 +25,10 @@ public class JpanelWithImage extends JPanel {
    
     private Image imagen;
     private Features feature;
-    public String Ubicacion;
+    private String Ubicacion;
     private  ArrayList<String> caracteristicas = new ArrayList<>();
     private Screen appScreen;
+    private FindWord findWord = new FindWord();
  
     public JpanelWithImage(Image imagenInicial, String Ubicacion, Screen pAppScreen) throws Exception {
     	this.Ubicacion = Ubicacion;
@@ -67,13 +70,15 @@ public class JpanelWithImage extends JPanel {
           
     					@Override
     					public void actionPerformed(ActionEvent e) {
-    						appScreen.getController().deleteImage(Ubicacion);
+    						appScreen.deleteImage(Ubicacion);
     						setVisible(false);
     						appFrame.setVisible(false);
     						appFrame.dispose();
     						if(appScreen.getController().getImages().size() == 0) {
     							appScreen.setLabel("No hay fotografías aún, agrega una presionando el botón 'Nueva foto'");
     						}
+    						appScreen.deleteImage(Ubicacion);
+    						appScreen.updateUI();
     					}
     				});
           
@@ -84,11 +89,19 @@ public class JpanelWithImage extends JPanel {
     					e.printStackTrace();
     				}
 
-    				
+    				//JLabel SubTitle1 = new JLabel("Ruta:");
+    				//SubTitle1.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
+    				//SubTitle1.setPreferredSize(new Dimension(400,60));
+    				//info.add(SubTitle1);
     				
     				JLabel path = new JLabel("Ruta: "+Ubicacion);
     				path.setPreferredSize(new Dimension(400,90));
     				info.add(path);
+    				
+    				//JLabel SubTitle2 = new JLabel("Etiquetas:");
+    				//SubTitle2.setPreferredSize(new Dimension(400,75));
+    				//SubTitle2.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
+    				//info.add(SubTitle2);
             
     				for (int i=0;i<5;i++) {
     					JLabel text = new JLabel("        "+caracteristicas.get(i));
@@ -115,7 +128,7 @@ public class JpanelWithImage extends JPanel {
     
     public boolean serchInImage(String pSearch) {
    		for(int i = 0; i<caracteristicas.size();i++) {
-   			if(pSearch.equals(caracteristicas.get(i))) {
+   			if(this.findWord.findWord(caracteristicas.get(i), pSearch)) {
    				return true;
    			}
     	}
@@ -124,6 +137,16 @@ public class JpanelWithImage extends JPanel {
     
     public void setVisible() {
    		this.setVisible(false);
+    }
+    
+    public ArrayList<String> getFeatures() {
+    	
+    	return this.caracteristicas;
+    }
+    
+    public String getPath() {
+    	
+    	return this.Ubicacion;
     }
 }
 

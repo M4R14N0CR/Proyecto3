@@ -1,13 +1,17 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'application'
 
-
-mainClassName = 'App'
 
 repositories{
 	mavenCentral()
 }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+mainClassName = 'Principal'
+
+sourceCompatibility = 1.17
+targetCompatibility = 1.17
 
 dependencies{
 

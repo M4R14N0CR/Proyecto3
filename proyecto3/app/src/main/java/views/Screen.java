@@ -81,7 +81,11 @@ public class Screen extends JPanel {
     }
 
     public void deleteImage(String pDirection) {
-    	this.appController.deleteImage(pDirection);
+    	for(int i = 0; i<this.appController.getImages().size();i++) {
+    		if(pDirection.equals(this.appController.getImages().get(i).getPath())) {
+    			this.appController.getImages().remove(i);
+    		}
+		}
     }  
     
     public AppGaleryController getController() {

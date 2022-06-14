@@ -23,6 +23,7 @@ public class PrincipalFrame {
       
     	appFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     	appFrame.setSize(new Dimension(870,750));
+    	appFrame.setMaximumSize(new Dimension(870,750));
       
     	appFrame.setPreferredSize(new Dimension(870,750));
     	appFrame.setResizable(true);

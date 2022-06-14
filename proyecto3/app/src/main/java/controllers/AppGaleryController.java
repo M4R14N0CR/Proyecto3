@@ -43,16 +43,7 @@ public class AppGaleryController {
 		return this.appGaleryModel.getResults();
 	}
 	
-	public void deleteImage(String pDirection) {
-		for(int i = 0; i<this.appGaleryModel.getImages().size();i++) {
-    		if(pDirection.equals(this.appGaleryModel.getImages().get(i).Ubicacion)) {
-    			this.appGaleryModel.getImages().remove(i);
-    		}
-		}
-	}
 	
-	public void deleteResults() {
-		this.appGaleryModel.getResults().clear();
-	}
-
+	
+	
 }

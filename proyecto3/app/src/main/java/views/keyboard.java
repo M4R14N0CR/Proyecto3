@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Engine.FindWord;
 import controllers.AppGaleryController;
 
 public class keyboard extends JPanel{
@@ -19,6 +20,7 @@ public class keyboard extends JPanel{
     private TextField textfield = new TextField();
     private Screen OriginalScreen;
     private AppGaleryController appController;
+    
     
     private keyboard(Grid grid, AppGaleryController appController) {
     	
@@ -32,6 +34,7 @@ public class keyboard extends JPanel{
         
     		@Override
     		public void actionPerformed(ActionEvent e) {
+    			
     			if(OriginalScreen.getController().getImages().size()==0) {
     				OriginalScreen.setLabel("No hay fotografías aún, agrega una presionando el botón 'Nueva foto'");
     			}else {
@@ -50,6 +53,10 @@ public class keyboard extends JPanel{
     		
     		@Override
     		public void actionPerformed(ActionEvent e) {
+    			
+    			
+    			if(((JTextField)e.getSource()).getText().length() >= 3) {
+    				
     			OriginalScreen.searchSystem(((JTextField)e.getSource()).getText());
 
     			if(OriginalScreen.getController().getResults().size() == 0) {
@@ -64,6 +71,7 @@ public class keyboard extends JPanel{
     			
     			for(int i = 0; i<OriginalScreen.getController().getImages().size();i++) {
     				
+    				
     				if(OriginalScreen.getController().getResults().contains(OriginalScreen.getController().getImages().get(i))) {
     					
     				}
@@ -73,8 +81,9 @@ public class keyboard extends JPanel{
     			}
     			
     			grid.updateUI();
-    			OriginalScreen.getController().deleteResults();
+    			OriginalScreen.getController().getResults().clear();
     			
+    		}
     		}
     	});
 

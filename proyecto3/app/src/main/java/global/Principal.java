@@ -10,7 +10,7 @@ import views.PrincipalFrame;
 public class Principal {
     
     public static void main(String[] args) {
-    	
+    	System.getProperty("java.classpath");
     	PrincipalFrame appFrame = new PrincipalFrame();
 
     }
