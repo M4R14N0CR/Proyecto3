@@ -19,6 +19,8 @@ public class keyboard extends JPanel{
     
     
     public keyboard(Grid grid) {
+    	this.addButton.setForeground(Color.white);
+    	
     	this.setBackground(Color.white);
     	this.setLayout(new FlowLayout());
     	

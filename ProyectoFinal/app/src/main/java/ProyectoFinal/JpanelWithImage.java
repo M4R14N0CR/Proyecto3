@@ -82,22 +82,25 @@ public class JpanelWithImage extends JPanel {
 	            }
 	            
 	            JLabel path = new JLabel("Ruta: "+Ubicacion);
-	            path.setPreferredSize(new Dimension(400,90));
+	            path.setPreferredSize(new Dimension(360,90));
 				info.add(path);
 	            
-				/*
+				
 	            JLabel textFeature = new JLabel("Etiquetas: ");
 	            textFeature.setPreferredSize(new Dimension(180,30));
-	            textFeature.setMaximumSize(new Dimension(180,30));
 	            info.add(textFeature);
-	            */
+	            
+	            JLabel empty = new JLabel(" ");
+	            empty.setPreferredSize(new Dimension(180,30));
+	            info.add(empty);
+	            
 	            
 	            for (int i=0;i<5;i++) {
 	              JLabel text = new JLabel(caracteristicas.get(i));
-	              //text.setOpaque(true);
+	              text.setOpaque(true);
 	              text.setPreferredSize(new Dimension(100,50));
 	              text.setMaximumSize(new Dimension(100,50));
-	              //text.setBackground(Color.LIGHT_GRAY);
+	              text.setBackground(Color.LIGHT_GRAY);
 	              info.add(text);
 	            }
 	            info.add(deleteButton);
