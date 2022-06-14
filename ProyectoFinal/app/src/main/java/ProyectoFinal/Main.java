@@ -1,4 +1,4 @@
-package proyecto3;
+package ProyectoFinal;
 
 import java.awt.Dimension;
 
@@ -23,3 +23,4 @@ public class Main {
 
 		}
 }
+

@@ -1,7 +1,8 @@
-package proyecto3;
+package ProyectoFinal;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileChooser extends JFrame {
@@ -14,7 +15,14 @@ public class FileChooser extends JFrame {
 		dlg.setFileFilter(filter);
 		int option = dlg.showOpenDialog(dlg);
 		this.selectPath = dlg.getSelectedFile().getPath();
-		myscreen.addImagen(selectPath);
+		try {
+			myscreen.addImagen(selectPath);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		myscreen.redimencion(myscreen);
+		JOptionPane.showMessageDialog(null, "La imagen ha sido agregada exitosamente");
 	}
 	
 }

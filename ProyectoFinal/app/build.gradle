@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+
+mainClassName = 'App'
+
+repositories{
+  mavenCentral()
+}
+
+dependencies{
+
+implementation platform('com.google.cloud:libraries-bom:25.3.0')
+
+implementation 'com.google.cloud:google-cloud-vision'
+}
