@@ -1,4 +1,4 @@
-package views;
+package proyecto3;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,7 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Frame extends JFrame {
-	JPanel PrincipalPanel = new JPanel();
+	
+	private JPanel PrincipalPanel = new JPanel();
 	
 	public Frame(String Title) {
 		this.setTitle(Title);

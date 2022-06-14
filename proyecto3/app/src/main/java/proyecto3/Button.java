@@ -1,4 +1,4 @@
-package views;
+package proyecto3;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;

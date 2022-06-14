@@ -1,4 +1,5 @@
-package views;
+package proyecto3;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -14,8 +15,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
  
@@ -23,19 +22,19 @@ public class JpanelWithImage extends JPanel {
    
     private Image imagen;
     private Features feature;
-    private String Ubicacion;
-    private  ArrayList<String> caracteristicas = new ArrayList<>();
+    private String Location;
+    private  ArrayList<String> Characteristics = new ArrayList<>();
     private Screen appScreen;
     private FindWord findWord = new FindWord();
  
-    public JpanelWithImage(Image imagenInicial, String Ubicacion, Screen pAppScreen) throws Exception {
-    	this.Ubicacion = Ubicacion;
+    public JpanelWithImage(Image imagenInicial, String pLocation, Screen pAppScreen) throws Exception {
+    	this.Location = pLocation;
     	this.appScreen = pAppScreen;
     	feature = new Features();
-    	feature.setFeatures(Ubicacion);
+    	feature.setFeatures(pLocation);
       
     	for (int i=0; i<feature.getFeatures().size();i++) {
-    		caracteristicas.add(feature.getFeatures().get(i));
+    		Characteristics.add(feature.getFeatures().get(i));
     	}
     	
     	this.setPreferredSize(new Dimension(200,20));
@@ -44,13 +43,12 @@ public class JpanelWithImage extends JPanel {
     		if (imagenInicial != null) {
     			imagen = imagenInicial;
     		}
-    		
+        
     		this.addMouseListener((MouseListener) new MouseAdapter() { 
     			public void mousePressed(MouseEvent me) { 
     				Frame appFrame = new Frame("Image");
-    				appFrame.setResizable(true);
     				
-    				Screen newScreen = new Screen(appScreen.getController());
+    				Screen newScreen = new Screen();
     				newScreen.setPreferredSize(new Dimension(250,250));
     				newScreen.setMaximumSize(new Dimension(250,250));
     				
@@ -59,50 +57,46 @@ public class JpanelWithImage extends JPanel {
     				info.setLayout(new FlowLayout());
     				info.setBackground(Color.white);
    
-    				
-    				Button deleteButton = new Button(35,100,"Eliminar foto",Color.red);
+    				Button deleteButton = new Button(40,100,"Eliminar foto",Color.red);
     				deleteButton.setForeground(Color.white);
-    				
-    				
     				deleteButton.addActionListener(new ActionListener() {
           
     					@Override
     					public void actionPerformed(ActionEvent e) {
-    						appScreen.deleteImage(Ubicacion);
+    						appScreen.deleteImage(pLocation);
     						setVisible(false);
     						appFrame.setVisible(false);
     						appFrame.dispose();
-    						if(appScreen.getController().getImages().size() == 0) {
+    						if(appScreen.getImages().size()==0) {
     							appScreen.setLabel("No hay fotografías aún, agrega una presionando el botón 'Nueva foto'");
     						}
-    						appScreen.deleteImage(Ubicacion);
-    						appScreen.updateUI();
     					}
     				});
           
     				try {
-    					newScreen.addImagen(Ubicacion,250);
+    					newScreen.addImagen(pLocation,250);
     				} catch (Exception e) {
     					
     					e.printStackTrace();
     				}
 
-    				//JLabel SubTitle1 = new JLabel("Ruta:");
-    				//SubTitle1.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
-    				//SubTitle1.setPreferredSize(new Dimension(400,60));
-    				//info.add(SubTitle1);
+            
+    				JLabel SubTitle1 = new JLabel("Ruta:");
+    				SubTitle1.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
+    				SubTitle1.setPreferredSize(new Dimension(400,60));
+    				info.add(SubTitle1);
     				
-    				JLabel path = new JLabel("Ruta: "+Ubicacion);
-    				path.setPreferredSize(new Dimension(400,90));
+    				JLabel path = new JLabel(pLocation);
+    				path.setPreferredSize(new Dimension(400,20));
     				info.add(path);
     				
-    				//JLabel SubTitle2 = new JLabel("Etiquetas:");
-    				//SubTitle2.setPreferredSize(new Dimension(400,75));
-    				//SubTitle2.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
-    				//info.add(SubTitle2);
+    				JLabel SubTitle2 = new JLabel("Etiquetas:");
+    				SubTitle2.setPreferredSize(new Dimension(400,75));
+    				SubTitle2.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
+    				info.add(SubTitle2);
             
     				for (int i=0;i<5;i++) {
-    					JLabel text = new JLabel("        "+caracteristicas.get(i));
+    					JLabel text = new JLabel("       " + Characteristics.get(i));
     					text.setOpaque(true);
     					text.setPreferredSize(new Dimension(100,50));
     					text.setMaximumSize(new Dimension(100,50));
@@ -125,25 +119,19 @@ public class JpanelWithImage extends JPanel {
    	}
     
     public boolean serchInImage(String pSearch) {
-   		for(int i = 0; i<caracteristicas.size();i++) {
-   			if(this.findWord.findWord(caracteristicas.get(i), pSearch)) {
+   		for(int i = 0; i<Characteristics.size();i++) {
+   			if(this.findWord.findWord(Characteristics.get(i), pSearch)) {
    				return true;
    			}
     	}
     	return false;
    	}
     
-    public void setVisible() {
-   		this.setVisible(false);
+    public void setVisible(Boolean b) {
+   		this.setVisible(b);
     }
-    
-    public ArrayList<String> getFeatures() {
-    	
-    	return this.caracteristicas;
-    }
-    
-    public String getPath() {
-    	
-    	return this.Ubicacion;
+
+    public String getMyLocation() {
+    	return this.Location;
     }
 }
