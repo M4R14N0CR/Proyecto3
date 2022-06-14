@@ -9,29 +9,27 @@ public class Grid extends JPanel{
     private JScrollPane scroll;
     
     public Grid() {
-      myscreen= new Screen();
-      this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+    	myscreen= new Screen();
+    	this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     
-      this.mykey = new keyboard(this);
-      this.mykey.actionButton(this.myscreen);
-
-      this.scroll = new JScrollPane();
-      
-      this.add(this.mykey);
+    	this.mykey = new keyboard(this);
+    	this.mykey.actionButton(this.myscreen); 
+    	this.scroll = new JScrollPane();
+    	this.add(this.mykey);
 
     }  
 
     public void setScroll() {
-      this.scroll.add(myscreen);
-      this.scroll.setViewportView(myscreen);
-      this.add(this.scroll);
+    	this.scroll.add(myscreen);
+    	this.scroll.setViewportView(myscreen);
+    	this.add(this.scroll);
     }
 
     public void setScreen(Screen newScreen) {
-      this.myscreen=newScreen;
+    	this.myscreen=newScreen;
     }
     
     public Screen getScreen() {
-      return this.myscreen;
+    	return this.myscreen;
     }
-  }
+}
