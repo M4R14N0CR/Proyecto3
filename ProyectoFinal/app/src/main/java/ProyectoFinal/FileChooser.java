@@ -16,12 +16,12 @@ public class FileChooser extends JFrame {
     int option = dlg.showOpenDialog(dlg);
     this.selectPath = dlg.getSelectedFile().getPath();
     try {
-      myscreen.addImagen(selectPath);
+      myscreen.addImagen(selectPath,200);
     } catch (Exception e1) {
       e1.printStackTrace();
     }
     
-    myscreen.redimencion(myscreen);
+    myscreen.redimencion();
     JOptionPane.showMessageDialog(null, "La imagen ha sido agregada exitosamente");
   }
   
