@@ -46,10 +46,10 @@ public class JpanelConImagen extends JPanel {
     				Frame appFrame = new Frame("Image");
     				
     				Screen newScreen = new Screen();
-    				newScreen.setPreferredSize(new Dimension(200,200));
+    				newScreen.setPreferredSize(new Dimension(250,250));
     				
     				JPanel info = new JPanel();
-    				info.setPreferredSize(new Dimension(410,280));
+    				info.setPreferredSize(new Dimension(420,280));
     				info.setLayout(new FlowLayout());
     				info.setBackground(Color.white);
     				
@@ -70,14 +70,14 @@ public class JpanelConImagen extends JPanel {
     				});
           
     				try {
-    					newScreen.addImagen(Ubicacion);
+    					newScreen.addImagen(Ubicacion,250);
     				} catch (Exception e) {
     					
     					e.printStackTrace();
     				}
             
     				JLabel path = new JLabel(Ubicacion);
-    				path.setPreferredSize(new Dimension(400,50));
+    				path.setPreferredSize(new Dimension(410,90));
     				info.add(path);
             
     				for (int i=0;i<5;i++) {

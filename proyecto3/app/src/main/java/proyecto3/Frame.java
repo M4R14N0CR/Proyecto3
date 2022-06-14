@@ -12,14 +12,14 @@ public class Frame extends JFrame {
 	
 	public Frame(String Title) {
 		this.setTitle(Title);
-		this.setSize(new Dimension(700,300));
-		this.setPreferredSize(new Dimension(700,300));
+		this.setSize(new Dimension(700,360));
+		this.setPreferredSize(new Dimension(700,360));
 		this.setResizable(false);
 		this.pack();  
 		this.setVisible(true);
 		this.setLayout(new FlowLayout());
 		
-		this.PrincipalPanel.setPreferredSize(new Dimension(700,300));
+		this.PrincipalPanel.setPreferredSize(new Dimension(700,370));
 		this.PrincipalPanel.setBackground(Color.white);;
 		
 		this.add(PrincipalPanel);

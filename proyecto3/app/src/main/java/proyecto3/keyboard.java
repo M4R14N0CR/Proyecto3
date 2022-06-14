@@ -13,15 +13,16 @@ public class keyboard extends JPanel{
 
     private Button addButton = new Button(50,200,"Nueva foto",Color.BLUE);
     private Button CleanButton = new Button(55, 40, "X", Color.WHITE);
-    private JTextField textfield1 = new JTextField();
+    private TextField textfield = new TextField();
     private Screen OriginalScreen;
-    private Screen newScreen;
+    private Screen newScreen= new Screen();;
     
     
     public keyboard(Grid grid) {
+    	this.setBackground(Color.white);
+    	this.setLayout(new FlowLayout());
     	
     	this.OriginalScreen=grid.getScreen(); 
-    	this.setLayout(new FlowLayout());
  
     	this.CleanButton.addActionListener(new ActionListener() {
         
@@ -30,20 +31,17 @@ public class keyboard extends JPanel{
    
     			grid.setScreen(OriginalScreen);
     			grid.setScroll();
-    			textfield1.setText("");
+    			textfield.setText("");
     		}
     	});
       
-    	this.textfield1.setPreferredSize(new Dimension(350,55));
-    	this.textfield1.setMaximumSize(new Dimension(350,55));
-    	this.textfield1.setBackground(Color.white);
-    	this.textfield1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-    	this.textfield1.addActionListener(new ActionListener() {
+    	
+    	this.textfield.addActionListener(new ActionListener() {
     		
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			OriginalScreen.searchSystem(((JTextField)e.getSource()).getText());
-    			newScreen = new Screen();
+
     			newScreen.setLabel("No hay fotografías que coincidan con la búsqueda. Por favor intenta de nuevo con otra información");
     			for (int i=0; i<OriginalScreen.searchResults.size();i++){
     				try {
@@ -61,22 +59,20 @@ public class keyboard extends JPanel{
     		}
     	});
 
-    	this.setBackground(Color.white);
-    	this.add(textfield1);
+    	this.add(textfield);
     	this.add(CleanButton);
     	this.add(addButton);
-    	}
+    }
     
-
     
-    	public void actionButton(Screen myscreen) {
-    		this.addButton.addActionListener(new ActionListener() {
+    public void actionButton(Screen myscreen) {
+    	this.addButton.addActionListener(new ActionListener() {
         
-    			@Override
-    			public void actionPerformed(ActionEvent e) {
-    				FileChooser fc = new FileChooser(myscreen);
-    			}
-    		});
-    	}
+    		@Override
+    		public void actionPerformed(ActionEvent e) {
+    			FileChooser fc = new FileChooser(myscreen);
+    		}
+    	});
+    }
     
-  	}
+}

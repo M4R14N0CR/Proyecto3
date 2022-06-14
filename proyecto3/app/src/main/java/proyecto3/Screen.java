@@ -35,6 +35,16 @@ public class Screen extends JPanel {
     	this.updateUI();
     }
     
+    public void addImagen(String Ubicacion,int Dimensions)throws Exception{
+    	Image myImage = new ImageIcon(Ubicacion).getImage();
+    	JpanelConImagen myImagen = new JpanelConImagen(myImage, Ubicacion,this);
+    	myImagen.setPreferredSize(new Dimension(Dimensions,Dimensions));
+    	this.images.add(myImagen);
+    	this.appLabel.setVisible(false);
+    	this.add(myImagen);
+    	this.updateUI();
+    }
+    
     public void setSize(int largo) {
     	this.setPreferredSize(new Dimension(835,largo));
     	this.setMaximumSize(new Dimension(835,largo));  
