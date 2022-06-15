@@ -1,4 +1,4 @@
-package views;
+package UI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -10,40 +10,40 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Engine.FindWord;
-import controllers.AppGaleryController;
+
 
 public class keyboard extends JPanel{
 
 	private static keyboard myKeyboard = null;
+
     private Button addButton = new Button(50,200,"Nueva foto",Color.BLUE);
     private Button CleanButton = new Button(55, 40, "X", Color.WHITE);
     private TextField textfield = new TextField();
     private Screen OriginalScreen;
-    private AppGaleryController appController;
     
     
-    private keyboard(Grid grid, AppGaleryController appController) {
+    private keyboard(Grid grid) {
     	
-    	this.appController = appController;
     	this.setBackground(Color.white);
     	this.setLayout(new FlowLayout());
     	
     	this.OriginalScreen=grid.getScreen(); 
- 
+    	this.addButton.setForeground(Color.white);
     	this.CleanButton.addActionListener(new ActionListener() {
         
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			
-    			if(OriginalScreen.getController().getImages().size()==0) {
+    			if(OriginalScreen.getImages().size()==0) {
     				OriginalScreen.setLabel("No hay fotografías aún, agrega una presionando el botón 'Nueva foto'");
     			}else {
     				OriginalScreen.setLabelVisual();
     			}
     			
-    			for (int i=0; i<OriginalScreen.getController().getImages().size();i++){
-    				OriginalScreen.getController().getImages().get(i).setVisible(true);
+    			for (int i=0; i<OriginalScreen.getImages().size();i++){
+    				OriginalScreen.getImages().get(i).setVisible(true);
     			}
+    			textfield.setEditable(true);
     			textfield.setText("");
     		}
     	});
@@ -54,36 +54,31 @@ public class keyboard extends JPanel{
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			
+    			if(((JTextField)e.getSource()).getText().length()>=3) {
+    				
     			
-    			if(((JTextField)e.getSource()).getText().length() >= 3) {
-    				
-    			OriginalScreen.searchSystem(((JTextField)e.getSource()).getText());
-
-    			if(OriginalScreen.getController().getResults().size() == 0) {
-    				
-    				OriginalScreen.setLabel("No hay fotografías que coincidan con la búsqueda. Por favor intenta de nuevo con otra información");
-    			}
     			
-    			else {
-    				
-    				OriginalScreen.setLabelVisual();
-    			}
-    			
-    			for(int i = 0; i<OriginalScreen.getController().getImages().size();i++) {
-    				
-    				
-    				if(OriginalScreen.getController().getResults().contains(OriginalScreen.getController().getImages().get(i))) {
-    					
+    				OriginalScreen.searchSystem(((JTextField)e.getSource()).getText());
+    	    	
+    				if (OriginalScreen.getSearchResults().size()==0) {
+    					OriginalScreen.setLabel("No hay fotografías que coincidan con la búsqueda. Por favor intenta de nuevo con otra información");
     				}
     				else {
-    					OriginalScreen.getController().getImages().get(i).setVisible(false);
+    					OriginalScreen.setLabelVisual();
     				}
+    			
+    				for (int i=0; i<OriginalScreen.getImages().size();i++){
+    					if(OriginalScreen.getSearchResults().contains(OriginalScreen.getImages().get(i))) {
+    					}
+    					else {
+    						OriginalScreen.getImages().get(i).setVisible(false);
+    					}
+    				}
+    			
+    				textfield.setEditable(false);
+    				grid.updateUI();
+    				OriginalScreen.getSearchResults().clear();
     			}
-    			
-    			grid.updateUI();
-    			OriginalScreen.getController().getResults().clear();
-    			
-    		}
     		}
     	});
 
@@ -103,13 +98,15 @@ public class keyboard extends JPanel{
     	});
     }
     
-    public static keyboard getKeyboard(Grid grid,AppGaleryController appController ) {
+    
+    public static keyboard getKeyboard(Grid grid) {
     	if(myKeyboard==null) {
-    		myKeyboard = new keyboard(grid, appController);
+    		myKeyboard = new keyboard(grid);
     	}
     	
     	return myKeyboard;
     }
+    
     
 }
 

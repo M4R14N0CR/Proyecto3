@@ -1,4 +1,4 @@
-package views;
+package UI;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Frame extends JFrame {
-	JPanel PrincipalPanel = new JPanel();
+private JPanel PrincipalPanel = new JPanel();
 	
 	public Frame(String Title) {
 		this.setTitle(Title);
@@ -20,7 +20,6 @@ public class Frame extends JFrame {
 		this.setLayout(new FlowLayout());
 		
 		this.PrincipalPanel.setBackground(Color.white);
-		this.PrincipalPanel.setLayout(new FlowLayout());
 		this.PrincipalPanel.setPreferredSize(new Dimension(800,390));
 	}
 	

@@ -1,4 +1,4 @@
-package views;
+package UI;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -21,8 +21,9 @@ public class FileChooser extends JFrame {
 			e1.printStackTrace();
 		}
     
-		myscreen.redimencion();
+		myscreen.Resize();
 		JOptionPane.showMessageDialog(null, "La imagen ha sido agregada exitosamente");
 	}
+  
   
 }
