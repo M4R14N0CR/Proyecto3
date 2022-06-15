@@ -27,11 +27,12 @@ public class keyboard extends JPanel{
     	this.setLayout(new FlowLayout());
     	
     	this.OriginalScreen=grid.getScreen(); 
- 
+    	this.addButton.setForeground(Color.white);
     	this.CleanButton.addActionListener(new ActionListener() {
         
     		@Override
     		public void actionPerformed(ActionEvent e) {
+    			
     			if(OriginalScreen.getImages().size()==0) {
     				OriginalScreen.setLabel("No hay fotografías aún, agrega una presionando el botón 'Nueva foto'");
     			}else {
@@ -51,26 +52,32 @@ public class keyboard extends JPanel{
     		
     		@Override
     		public void actionPerformed(ActionEvent e) {
-    			OriginalScreen.searchSystem(((JTextField)e.getSource()).getText());
-    	    	
-    			if (OriginalScreen.getSearchResults().size()==0) {
-    				OriginalScreen.setLabel("No hay fotografías que coincidan con la búsqueda. Por favor intenta de nuevo con otra información");
-    			}
-    			else {
-    				OriginalScreen.setLabelVisual();
-    			}
     			
-    			for (int i=0; i<OriginalScreen.getImages().size();i++){
-    				if(OriginalScreen.getSearchResults().contains(OriginalScreen.getImages().get(i))) {
+    			if(((JTextField)e.getSource()).getText().length()>=3) {
+    				
+    			
+    			
+    				OriginalScreen.searchSystem(((JTextField)e.getSource()).getText());
+    	    	
+    				if (OriginalScreen.getSearchResults().size()==0) {
+    					OriginalScreen.setLabel("No hay fotografías que coincidan con la búsqueda. Por favor intenta de nuevo con otra información");
     				}
     				else {
-    					OriginalScreen.getImages().get(i).setVisible(false);
+    					OriginalScreen.setLabelVisual();
     				}
-    			}
     			
-    			textfield.setEditable(false);
-    			grid.updateUI();
-    			OriginalScreen.getSearchResults().clear();
+    				for (int i=0; i<OriginalScreen.getImages().size();i++){
+    					if(OriginalScreen.getSearchResults().contains(OriginalScreen.getImages().get(i))) {
+    					}
+    					else {
+    						OriginalScreen.getImages().get(i).setVisible(false);
+    					}
+    				}
+    			
+    				textfield.setEditable(false);
+    				grid.updateUI();
+    				OriginalScreen.getSearchResults().clear();
+    			}
     		}
     	});
 

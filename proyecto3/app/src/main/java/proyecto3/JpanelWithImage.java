@@ -26,7 +26,7 @@ public class JpanelWithImage extends JPanel {
     private  ArrayList<String> Characteristics = new ArrayList<>();
     private Screen appScreen;
     private FindWord findWord = new FindWord();
- 
+    
     public JpanelWithImage(Image imagenInicial, String pLocation, Screen pAppScreen) throws Exception {
     	this.Location = pLocation;
     	this.appScreen = pAppScreen;
@@ -49,11 +49,11 @@ public class JpanelWithImage extends JPanel {
     				Frame appFrame = new Frame("Image");
     				
     				Screen newScreen = new Screen();
-    				newScreen.setPreferredSize(new Dimension(250,250));
-    				newScreen.setMaximumSize(new Dimension(250,250));
+    				newScreen.setPreferredSize(new Dimension(300,300));
+    				newScreen.setMaximumSize(new Dimension(300,300));
     				
     				JPanel info = new JPanel();
-    				info.setPreferredSize(new Dimension(420,300));
+    				info.setPreferredSize(new Dimension(420,380));
     				info.setLayout(new FlowLayout());
     				info.setBackground(Color.white);
    
@@ -74,7 +74,7 @@ public class JpanelWithImage extends JPanel {
     				});
           
     				try {
-    					newScreen.addImagen(pLocation,250);
+    					newScreen.addImagen(pLocation,290);
     				} catch (Exception e) {
     					
     					e.printStackTrace();
@@ -83,7 +83,7 @@ public class JpanelWithImage extends JPanel {
             
     				JLabel SubTitle1 = new JLabel("Ruta:");
     				SubTitle1.setFont(new Font("Arial", Font.CENTER_BASELINE,15));
-    				SubTitle1.setPreferredSize(new Dimension(400,60));
+    				SubTitle1.setPreferredSize(new Dimension(400,40));
     				info.add(SubTitle1);
     				
     				JLabel path = new JLabel(pLocation);
@@ -103,7 +103,16 @@ public class JpanelWithImage extends JPanel {
     					text.setBackground(Color.LIGHT_GRAY);
     					info.add(text);
     				}
+    				
+    				JLabel whiteLabel = new JLabel();
+    				whiteLabel.setPreferredSize(new Dimension(310,50));
+    				
+    				JLabel whiteLabel2 = new JLabel();
+    				whiteLabel2.setPreferredSize(new Dimension(310,50));
+    				
+    				info.add(whiteLabel);
     				info.add(deleteButton);
+    				info.add(whiteLabel2);
     				appFrame.addElement(newScreen);
     				appFrame.addElement(info);
     				appFrame.addElement();
